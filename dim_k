@@ -1,5 +1,5 @@
 #!/bin/sh
-#2000_40_1.sh
+#dim_k.sh
 #Slurm script to run R program that generates graph of discrete Delta-hedging call
 
 #Slurm directives
@@ -13,5 +13,5 @@
 module load R
 
 #Command to execute R code
-R CMD BATCH --no-save --vanilla 2000_40_1.R 2000_40_1out
+R CMD BATCH --no-save --vanilla dim_k.R dim_kout
 # End of script
