@@ -61,8 +61,7 @@ for(j in 1:J){
   A_grad_2 <- -sum(rowSums(theta_post*c(exp(THETA_tuta%*%A_0[,j])/(1+exp(THETA_tuta%*%A_0[,j]))/(1+exp(THETA_tuta%*%A_0[,j]))))*(THETA_tuta[,2]*THETA_tuta[,2]))
   A1_tuta <-A_0[2,j]-A_grad/A_grad_2
   aa <- A_0;aa[2,j] <- A1_tuta;
-  ss_0 <- colSums(exp(log(exp(THETA_tuta%*%A_0)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%(1-response)
-  ))  
+  ss_0 <- ss_1  
   ss_1 <- colSums(exp(log(exp(THETA_tuta%*%aa)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%(1-response)
   ))
   eps <- sum(log(ss_1/ss_0))
@@ -83,8 +82,7 @@ for(j in 1:J){
   A_grad_2 <- -sum(rowSums(theta_post*c(exp(THETA_tuta%*%A_0[,j])/(1+exp(THETA_tuta%*%A_0[,j]))/(1+exp(THETA_tuta%*%A_0[,j]))))*(THETA_tuta[,3]*THETA_tuta[,3]))
   A2_tuta <-A_0[3,j]-A_grad/A_grad_2
   aa <- A_0;aa[3,j] <- A2_tuta;
-  ss_0 <- colSums(exp(log(exp(THETA_tuta%*%A_0)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%(1-response)
-  ))  
+  ss_0 <- ss_1  
   ss_1 <- colSums(exp(log(exp(THETA_tuta%*%aa)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%(1-response)
   ))
   eps <- sum(log(ss_1/ss_0))
@@ -105,8 +103,7 @@ for(j in 1:J){
   A_grad_2 <- -sum(rowSums(theta_post*c(exp(THETA_tuta%*%A_0[,j])/(1+exp(THETA_tuta%*%A_0[,j]))/(1+exp(THETA_tuta%*%A_0[,j]))))*(THETA_tuta[,4]*THETA_tuta[,4]))
   A3_tuta <-A_0[4,j]-A_grad/A_grad_2
   aa <- A_0;aa[4,j] <- A3_tuta;
-  ss_0 <- colSums(exp(log(exp(THETA_tuta%*%A_0)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%(1-response)
-  ))  
+  ss_0 <- ss_1 
   ss_1 <- colSums(exp(log(exp(THETA_tuta%*%aa)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%(1-response)
   ))
   eps <- sum(log(ss_1/ss_0))
@@ -134,7 +131,6 @@ eps <- likelihood_1-likelihood_0
 while(eps>5){
   likelihood_0 <- likelihood_1;
   cc <- exp(THETA_tuta%*%A_0%*%response-theta_tmp)/apply(1+exp((THETA_tuta%*%A_0)),1,prod);
-  log_lik_0 <- sum(log(colSums(cc)));
   theta_post <- sweep(cc, 2, colSums(cc), "/") 
   for(j in 1:J){
     ss_0 <- ss_1
@@ -162,8 +158,7 @@ while(eps>5){
     A_grad_2 <- -sum(rowSums(theta_post*c(exp(THETA_tuta%*%A_0[,j])/(1+exp(THETA_tuta%*%A_0[,j]))/(1+exp(THETA_tuta%*%A_0[,j]))))*(THETA_tuta[,2]*THETA_tuta[,2]))
     A1_tuta <-A_0[2,j]-A_grad/A_grad_2
     aa <- A_0;aa[2,j] <- A1_tuta;
-    ss_0 <- colSums(exp(log(exp(THETA_tuta%*%A_0)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%(1-response)
-    ))  
+    ss_0 <- ss_1  
     ss_1 <- colSums(exp(log(exp(THETA_tuta%*%aa)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%(1-response)
     ))
     eps <- sum(log(ss_1/ss_0))
@@ -184,8 +179,7 @@ while(eps>5){
     A_grad_2 <- -sum(rowSums(theta_post*c(exp(THETA_tuta%*%A_0[,j])/(1+exp(THETA_tuta%*%A_0[,j]))/(1+exp(THETA_tuta%*%A_0[,j]))))*(THETA_tuta[,3]*THETA_tuta[,3]))
     A2_tuta <-A_0[3,j]-A_grad/A_grad_2
     aa <- A_0;aa[3,j] <- A2_tuta;
-    ss_0 <- colSums(exp(log(exp(THETA_tuta%*%A_0)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%(1-response)
-    ))  
+    ss_0 <- ss_1  
     ss_1 <- colSums(exp(log(exp(THETA_tuta%*%aa)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%(1-response)
     ))
     eps <- sum(log(ss_1/ss_0))
@@ -206,8 +200,7 @@ while(eps>5){
     A_grad_2 <- -sum(rowSums(theta_post*c(exp(THETA_tuta%*%A_0[,j])/(1+exp(THETA_tuta%*%A_0[,j]))/(1+exp(THETA_tuta%*%A_0[,j]))))*(THETA_tuta[,4]*THETA_tuta[,4]))
     A3_tuta <-A_0[4,j]-A_grad/A_grad_2
     aa <- A_0;aa[4,j] <- A3_tuta;
-    ss_0 <- colSums(exp(log(exp(THETA_tuta%*%A_0)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%A_0)))%*%(1-response)
-    ))  
+    ss_0 <- ss_1 
     ss_1 <- colSums(exp(log(exp(THETA_tuta%*%aa)*dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%response+log(dmvnorm(THETA_tuta[,2:4],rep(0,K),diag(1,K))*ll*ll*ll/(1+exp(THETA_tuta%*%aa)))%*%(1-response)
     ))
     eps <- sum(log(ss_1/ss_0))
