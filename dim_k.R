@@ -1,8 +1,6 @@
 library(mvtnorm)
 cond <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
-cond <- 1
 E <- as.matrix(read.csv("/rigel/home/xx2319/lasso/0-1categoryofdata.csv"))
-E <- as.matrix(read.csv("F:/working with qiangguo/0-1categoryofdata.csv"))
 ww <- 40
 w <- E[,2:(ww+1)]
 J = ncol(w)
@@ -17,7 +15,7 @@ A_initial <- A_initial*Q;
 d_initial <- rnorm(J,0,1);D_initial <- cbind(d_initial,A_initial);
 KK <- 20;theta_min <- -4;theta_max <- 4;mm1 <- seq(theta_min,theta_max,(theta_max-theta_min)/KK);mm <- mm1[-1]
 THETA_tuta <- matrix(0,nrow=KK*KK*KK,ncol=3);THETA_tuta[,3] <- rep(mm,KK*KK);
-THETA_tuta[,2] <-rep(c(rep(1,KK)%*%t(mm)),KK);THETA_tuta[,1] <-c(rep(1,KK*KK)%*%t(mm))#���K <- 3��theta�ֿ�,��ȡtheta�ķֿ�
+THETA_tuta[,2] <-rep(c(rep(1,KK)%*%t(mm)),KK);THETA_tuta[,1] <-c(rep(1,KK*KK)%*%t(mm))#Õë¶ÔK <- 3µÄtheta·Ö¿é,»ñÈ¡thetaµÄ·Ö¿é
 THETA_tuta <- cbind(rep(1,nrow(THETA_tuta)),THETA_tuta)
 theta_tmp <- rowSums(THETA_tuta[,2:4]*THETA_tuta[,2:4])/2
 xx <- seq(0.001,0.03,0.001);xx1 <- matrix(0,nrow = length(xx)*length(xx),ncol=2);xx1[,2] <- rep(xx,length(xx));xx1[,1] <- c(rep(1,length(xx))%*%t(xx))
